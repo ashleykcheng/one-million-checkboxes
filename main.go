@@ -55,8 +55,7 @@ func main() {
 }
 
 func serveHTML(w http.ResponseWriter, r *http.Request) {
-	html := `
-<!DOCTYPE html>
+	html := `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -82,7 +81,7 @@ func serveHTML(w http.ResponseWriter, r *http.Request) {
             for (let i = 0; i < num; i++) {
                 const checkbox = document.createElement('div');
                 checkbox.className = 'checkbox';
-                checkbox.innerHTML = `<input type="checkbox" id="cb${i}"><label for="cb${i}">${i}</label>`;
+                checkbox.innerHTML = '<input type="checkbox" id="cb' + i + '"><label for="cb' + i + '">' + i + '</label>';
                 checkbox.querySelector('input').addEventListener('change', (e) => toggleCheckbox(i, e.target.checked));
                 checkboxesContainer.appendChild(checkbox);
             }
@@ -118,8 +117,7 @@ func serveHTML(w http.ResponseWriter, r *http.Request) {
         setInterval(updateState, 5000); // Update state every 5 seconds
     </script>
 </body>
-</html>
-`
+</html>`
 	w.Header().Set("Content-Type", "text/html")
 	w.Write([]byte(html))
 }
